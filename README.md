@@ -10,13 +10,6 @@ QT & C++
 
 * يمنع استخدام اسم الفريق او اسم المشروع  في حال بناء متصفح على متصفح درب
 * <html>
-<style>
-a{
-    font-size:20px;
-    text-decoration:none;
-    color:rgb(255,150,0);
-}
-</style>
 <a href="example.com" >موقع صفر لمزيد من المعلومات </a>
 <br/><p align="right">الموقع غير متوفر حاليا</p>
 <hr/>
