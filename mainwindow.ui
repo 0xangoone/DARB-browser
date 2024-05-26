@@ -10,6 +10,12 @@
     <height>742</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -82,7 +88,7 @@ QTabBar::close-button {
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="icon">
-          <iconset theme="accessories-text-editor"/>
+          <iconset theme="camera-web"/>
          </attribute>
          <attribute name="title">
           <string>home</string>

@@ -5,5 +5,7 @@
         <file>img/refresh.png</file>
         <file>img/home.png</file>
         <file>img/close.png</file>
+        <file>img/darb.png</file>
+        <file>img/darb.ico</file>
     </qresource>
 </RCC>

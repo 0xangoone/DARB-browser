@@ -1,6 +1,8 @@
-QT       += core gui
+QT       += core gui webenginewidgets
+TARGET = DARBbrowser
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webenginewidgets
 
 CONFIG += c++17
 

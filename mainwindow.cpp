@@ -4,6 +4,13 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QIcon>
+#include <QWebEngineView>
+#include <QScrollBar>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QMessageBox>
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -12,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->removeTab(1);
     ui->tabWidget->removeTab(0);
 
+    //setting the window icon
+    const QIcon *window_icon = new QIcon(":/img/img/darb.png");
+    setWindowIcon(*window_icon);
+    setWindowTitle(u8"متصفح درب");
     // add the startup tab
     MainWindow::addNewTab();
 
@@ -36,8 +47,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(addTabButton, &QPushButton::clicked, this, &MainWindow::addNewTab);
 }
 void MainWindow::addNewTab() {
-    int tabCount = ui->tabWidget->count();
-
     QWidget *newTab = new QWidget();
 
     QVBoxLayout *layout = new QVBoxLayout(newTab);
@@ -58,7 +67,7 @@ void MainWindow::addNewTab() {
     //buttons
     QPushButton* search_btn = new QPushButton();
     search_btn->setIcon(*search_icon);
-    search_btn->setText("search");
+    search_btn->setText("بحث");
 
     QPushButton* refresh_btn = new QPushButton();
     refresh_btn->setIcon(*refresh_icon);
@@ -69,24 +78,81 @@ void MainWindow::addNewTab() {
     QPushButton* home_btn = new QPushButton();
     home_btn->setIcon(*home_icon);
 
+    // the web view
+    QWebEngineView* web_view = new QWebEngineView();
+    web_view->setUrl(QUrl("https://duckduckgo.com/"));
+    web_view->reload();
+
     // add elements to horizontal layout
     QHBoxLayout* hbox = new QHBoxLayout();
     hbox->addWidget(refresh_btn);
     hbox->addWidget(search_input);
     hbox->addWidget(search_btn);
     hbox->addWidget(home_btn);
-    hbox->addWidget(settings_btn);
+    hbox->addWidget(settings_btn);  
 
     layout->addLayout(hbox);
+    layout->addWidget(web_view);
+
+    web_view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     // add new Tab
     newTab->setLayout(layout);
-    ui->tabWidget->addTab(newTab, QString("Home"));
+    ui->tabWidget->addTab(newTab, QString("رئيسية"));
+
+    int last_tab_index = ui->tabWidget->count();
+    ui->tabWidget->setCurrentIndex(last_tab_index - 1);
+
+    connect(search_input,&QLineEdit::returnPressed,this,&MainWindow::onSearchButtonClicked);
+
+    // Connect button signals to slots
+    connect(search_btn, &QPushButton::clicked, this, &MainWindow::onSearchButtonClicked);
+    connect(refresh_btn, &QPushButton::clicked, this, &MainWindow::onRefreshButtonClicked);
+    connect(home_btn, &QPushButton::clicked, this, &MainWindow::onHomeButtonClicked);
+    connect(settings_btn, &QPushButton::clicked, this, &MainWindow::onSettingsButtonClicked);
+
+    connect(web_view,&QWebEngineView::titleChanged,this,&MainWindow::onTitleChanged);
+    connect(web_view,&QWebEngineView::urlChanged,this,&MainWindow::onUrlChanged);
+    connect(web_view,&QWebEngineView::iconChanged,this,&MainWindow::onIconChanged); 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::onIconChanged(const QIcon &icon){
+    int currentIndex = ui->tabWidget->currentIndex();
+    ui->tabWidget->setTabIcon(currentIndex,icon);
+}
+void MainWindow::onUrlChanged(const QUrl &url){
+    QWidget *currentTab = ui->tabWidget->currentWidget();
+    QLineEdit *searchInput = currentTab->findChild<QLineEdit *>();
+    QString str_url = url.toEncoded();
+    searchInput->setText(str_url);
+}
+void MainWindow::onTitleChanged(const QString &title){
+    int currentIndex = ui->tabWidget->currentIndex();
+    ui->tabWidget->setTabText(currentIndex, title);
+}
+void MainWindow::onSearchButtonClicked(){
+    QWidget *currentTab = ui->tabWidget->currentWidget();
+    QLineEdit *searchInput = currentTab->findChild<QLineEdit *>();
+    QWebEngineView *webView = currentTab->findChild<QWebEngineView *>();
+    QString search_query = searchInput->text();
+    webView->load(QUrl(search_query));
+}
+void MainWindow::onRefreshButtonClicked(){
+    QWidget *currentTab = ui->tabWidget->currentWidget();
+    QWebEngineView *webView = currentTab->findChild<QWebEngineView *>();
+    webView->reload();
+}
+void MainWindow::onHomeButtonClicked(){
+    QWidget *currentTab = ui->tabWidget->currentWidget();
+    QWebEngineView *webView = currentTab->findChild<QWebEngineView *>();
+    webView->load(QUrl("https://duckduckgo.com/"));
+}
+void MainWindow::onSettingsButtonClicked(){
+
 }
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {

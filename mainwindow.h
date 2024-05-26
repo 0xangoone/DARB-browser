@@ -20,6 +20,14 @@ public:
 private slots:
     void on_tabWidget_tabCloseRequested(int index);
     void addNewTab();
+    void onSearchButtonClicked();
+    void onRefreshButtonClicked();
+    void onHomeButtonClicked();
+    void onSettingsButtonClicked();
+    void onTitleChanged(const QString &title);
+    void onUrlChanged(const QUrl &url);
+    void onIconChanged(const QIcon &icon);
+
 
 private:
     Ui::MainWindow *ui;
