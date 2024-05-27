@@ -2,7 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QWebEngineNavigationRequest>
+#include <QWebEngineNewWindowRequest>
+#include <QWebEngineFullScreenRequest>
+#include <QWebEngineProfile>
+#include <QWebEngineDownloadRequest>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -27,7 +31,11 @@ private slots:
     void onTitleChanged(const QString &title);
     void onUrlChanged(const QUrl &url);
     void onIconChanged(const QIcon &icon);
-
+    void on_web_full_screen(const QWebEngineFullScreenRequest &request);
+    void SetFullScreen();
+    void on_newWindow(const QWebEngineNewWindowRequest &request);
+    void on_download(const QWebEngineDownloadRequest *download);
+    void downloadFile(const QUrl &url, const QString &filePath);
 
 private:
     Ui::MainWindow *ui;

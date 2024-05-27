@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1053</width>
-    <height>742</height>
+    <width>972</width>
+    <height>661</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,11 +33,35 @@ QPushButton{
       border: 1px solid;
 }</string>
   </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="sizeConstraint">
@@ -45,6 +69,9 @@ QPushButton{
       </property>
       <item>
        <widget class="QTabWidget" name="tabWidget">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
         <property name="styleSheet">
          <string notr="true">QTabBar::tab:selected{
 	background:rgb(25,25,25);
@@ -110,7 +137,7 @@ QTabBar::close-button {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1053</width>
+     <width>972</width>
      <height>21</height>
     </rect>
    </property>

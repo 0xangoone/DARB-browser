@@ -103,7 +103,7 @@ void MainWindow::addNewTab() {
     web_view->page()->profile()->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
 
     QWebEngineProfile *profile = QWebEngineProfile::defaultProfile();
-    //profile->setPersistentStoragePath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/myBrowserData");
+    profile->setPersistentStoragePath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/myBrowserData");
     profile->setCachePath(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
 
@@ -261,7 +261,7 @@ void MainWindow::onRefreshButtonClicked(){
 void MainWindow::onHomeButtonClicked(){
     QWidget *currentTab = ui->tabWidget->currentWidget();
     QWebEngineView *webView = currentTab->findChild<QWebEngineView *>();
-    webView->load(QUrl("https://duckduckgo.com/"));
+    webView->load(QUrl("https://duckduckgo.com/?q=&t=chromentp"));
 }
 
 void MainWindow::onSettingsButtonClicked(){
