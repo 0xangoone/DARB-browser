@@ -7,5 +7,7 @@
         <file>img/close.png</file>
         <file>img/darb.png</file>
         <file>img/darb.ico</file>
+        <file>img/left.png</file>
+        <file>img/right.png</file>
     </qresource>
 </RCC>

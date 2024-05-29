@@ -34,10 +34,13 @@ private slots:
     void on_web_full_screen(const QWebEngineFullScreenRequest &request);
     void SetFullScreen();
     void on_newWindow(const QWebEngineNewWindowRequest &request);
-    void on_download(const QWebEngineDownloadRequest *download);
-    void downloadFile(const QUrl &url, const QString &filePath);
-
+    void enableFullScreen();
+    void onBack();
+    void onForward();
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 private:
+    void handleKeyPress(int key);
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

@@ -12,10 +12,14 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    webprofile.cpp \
+    webview.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    webprofile.h \
+    webview.h
 
 FORMS += \
     mainwindow.ui

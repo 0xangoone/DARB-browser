@@ -26,11 +26,11 @@
 	color:white;
 }
 QPushButton{
+	border:none;
 	font-size:18px;
      padding:5px;
-      border-radius:10px;
-      background:rgb(15,15,15);
-      border: 1px solid;
+      background: transparent;
+      border: 0px solid black;
 }</string>
   </property>
   <property name="documentMode">
@@ -69,6 +69,9 @@ QPushButton{
       </property>
       <item>
        <widget class="QTabWidget" name="tabWidget">
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
