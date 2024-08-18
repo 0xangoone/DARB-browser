@@ -12,28 +12,34 @@
 #include <QFile>
 #include <QTimer>
 WebProfile::WebProfile() {
+    this->load();
+}
+void WebProfile::load(){
     this->setCachePath(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
-    this->setPersistentCookiesPolicy(QWebEngineProfile::PersistentCookiesPolicy::NoPersistentCookies);
-
+    qDebug () << QStandardPaths::CacheLocation;
+    this->setPersistentCookiesPolicy(QWebEngineProfile::PersistentCookiesPolicy::AllowPersistentCookies);
     QWebEngineCookieStore *cookieStore = this->cookieStore();
     if (!cookieStore) {
         qWarning() << "Failed to get cookieStore!";
         return;
     }
+    cookieStore->loadAllCookies();
     connect(cookieStore, &QWebEngineCookieStore::cookieAdded,this, [](const QNetworkCookie &cookie) {
         qDebug() << "Cookie added:" << cookie.name();
-        qDebug() << cookie.path();
-        qDebug() << cookie.domain();
+        qDebug() << "cookie path: "<< cookie.path();
+        qDebug() << "cookie domain: " << cookie.domain();
+        qDebug() <<"cookie value: " << cookie.value();
+        qDebug() << "is session cookie ?: "<<cookie.isSessionCookie();
     });
     connect(this,&QWebEngineProfile::downloadRequested,this,&WebProfile::on_download);
 }
 void WebProfile::on_download(const QWebEngineDownloadRequest *download){
     QString file_name = download->downloadDirectory();
     if( QSysInfo::prettyProductName().startsWith("Windows")){
-        // dos file System :-)
+        // dos file System
         file_name += "\\";
     }else{
-        // unix file system B-)
+        // unix file system
         file_name += "/";
     }
     file_name += download->downloadFileName();

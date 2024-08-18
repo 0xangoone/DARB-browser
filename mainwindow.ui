@@ -21,7 +21,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">*{
-	pading:0px;
+	padding:0px;
 	background:rgb(15,15,15);
 	color:white;
 }
@@ -37,7 +37,7 @@ QPushButton{
    <bool>false</bool>
   </property>
   <property name="tabShape">
-   <enum>QTabWidget::Rounded</enum>
+   <enum>QTabWidget::TabShape::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -51,7 +51,7 @@ QPushButton{
      <number>0</number>
     </property>
     <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
+     <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
     </property>
     <property name="leftMargin">
      <number>0</number>
@@ -65,7 +65,7 @@ QPushButton{
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
+       <enum>QLayout::SizeConstraint::SetFixedSize</enum>
       </property>
       <item>
        <widget class="QTabWidget" name="tabWidget">
@@ -73,7 +73,7 @@ QPushButton{
          <bool>false</bool>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="styleSheet">
          <string notr="true">QTabBar::tab:selected{
@@ -82,7 +82,7 @@ QPushButton{
 }
 QTabBar::tab {
 	color:white;
-	width:300px;
+	width:250px;
 	height:35px;
 	background:rgb(17,17,17);
 }
@@ -99,13 +99,13 @@ QTabBar::close-button {
  }</string>
         </property>
         <property name="tabPosition">
-         <enum>QTabWidget::North</enum>
+         <enum>QTabWidget::TabPosition::North</enum>
         </property>
         <property name="tabShape">
-         <enum>QTabWidget::Rounded</enum>
+         <enum>QTabWidget::TabShape::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="tabsClosable">
          <bool>true</bool>

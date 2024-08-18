@@ -6,6 +6,7 @@ class WebProfile: public QWebEngineProfile
 {
 public:
     WebProfile();
+    void load();
 private slots:
     void on_download(const QWebEngineDownloadRequest *download);
     void downloadFile(const QUrl &url, const QString &filePath);

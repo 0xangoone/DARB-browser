@@ -36,14 +36,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->verticalLayout->setContentsMargins(0,0,0,0);
     setContentsMargins(0,0,0,0);
     ui->centralwidget->setContentsMargins(0,0,0,0);
-    //setting the window icon
+
     const QIcon *window_icon = new QIcon(":/img/img/darb.png");
     setWindowIcon(*window_icon);
     setWindowTitle(u8"متصفح درب");
-    // add the startup tab
+
     MainWindow::addNewTab();
 
-    //new tab button
+
     QPushButton *addTabButton = new QPushButton("+", this);
     QFont font = addTabButton->font();
     font.setPixelSize(25);
@@ -72,23 +72,22 @@ void MainWindow::addNewTab() {
     QVBoxLayout *layout = new QVBoxLayout(newTab);
     layout->setAlignment(Qt::AlignTop);
 
-    // search text box element
+
     QLineEdit *search_input = new QLineEdit();
     search_input->setStyleSheet("border-radius:10px;"
                          "background:#303030;"
                          "font-size:18px;"
                          "padding:5px;"
                          "color:white;");
-    // load buttons icons
-    const QIcon* search_icon = new QIcon(":/img/img/search.png");
-    const QIcon* refresh_icon = new QIcon(":/img/img/refresh.png");
-    const QIcon* settings_icon = new QIcon(":img/img/setting.png");
-    const QIcon* home_icon = new QIcon(":img/img/home.png");
-    const QIcon* left_icon = new QIcon(":img/img/left.png");
-    const QIcon* right_icon = new QIcon(":img/img/right.png");
 
-    //buttons
-    QPushButton* search_btn = new QPushButton();
+    const QIcon* search_icon   = new QIcon(":/img/img/search.png" );
+    const QIcon* refresh_icon  = new QIcon(":/img/img/refresh.png");
+    const QIcon* settings_icon = new QIcon(":img/img/setting.png" );
+    const QIcon* home_icon     = new QIcon(":img/img/home.png"    );
+    const QIcon* left_icon     = new QIcon(":img/img/left.png"    );
+    const QIcon* right_icon    = new QIcon(":img/img/right.png"   );
+
+    QPushButton* search_btn    = new QPushButton();
     search_btn->setIcon(*search_icon);
 
     QPushButton* refresh_btn = new QPushButton();
@@ -135,7 +134,6 @@ void MainWindow::addNewTab() {
 
     connect(search_input,&QLineEdit::returnPressed,this,&MainWindow::onSearchButtonClicked);
 
-    // Connect button signals to slots
     connect(search_btn, &QPushButton::clicked, this, &MainWindow::onSearchButtonClicked);
     connect(refresh_btn, &QPushButton::clicked, this, &MainWindow::onRefreshButtonClicked);
     connect(home_btn, &QPushButton::clicked, this, &MainWindow::onHomeButtonClicked);

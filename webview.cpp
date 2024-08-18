@@ -9,13 +9,19 @@
 #include <QWebEngineCookieStore>
 
 WebView::WebView() {
-    WebProfile* profile = new WebProfile();
-    this->setPage(new QWebEnginePage(profile, this));
+    //WebProfile* profile = new WebProfile();
+    QWebEngineProfile *qprofile = new QWebEngineProfile(QString::fromLatin1("04394584267356253.%1").arg(qWebEngineChromiumVersion()));
+    WebProfile *profile = static_cast<WebProfile*>(qprofile);
+    profile->load();
+    QWebEnginePage *webpage = new QWebEnginePage(profile,this);
+    this->setPage(webpage);
     this->setUrl(QUrl("https://duckduckgo.com/?q=&t=chromentp"));
     this->reload();
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    //config the web view setting
+    this->settings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled,true);
+    this->settings()->setAttribute(QWebEngineSettings::NavigateOnDropEnabled,true);
+    this->settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled,true);
     this->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled,true);
     this->settings()->setAttribute(QWebEngineSettings::PluginsEnabled,true);
     this->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows,true);
