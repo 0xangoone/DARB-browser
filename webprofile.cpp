@@ -11,8 +11,14 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTimer>
+#include <QProgressDialog>
 WebProfile::WebProfile() {
     this->load();
+}
+WebProfile::~WebProfile(){
+    if (this->pd != nullptr){
+        delete pd;
+    }
 }
 void WebProfile::load(){
     this->setCachePath(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
@@ -53,22 +59,36 @@ void WebProfile::downloadFile(const QUrl &url, const QString &filePath)
     QNetworkRequest request(url);
     QNetworkReply *reply = manager->get(request);
 
+    pd = new QProgressDialog();
+    pd->setWindowModality(Qt::WindowModal);
+    pd->setMinimum(0);
+    pd->setLabelText("شريط التحميل");
+    pd->show();
+
+
+    connect(reply,&QNetworkReply::downloadProgress,[=](qint64 value,qint64 max){
+        this->pd->setMaximum(max);
+        this->pd->setValue(value);
+    });
+    connect(pd, &QProgressDialog::canceled, [reply]() {
+        reply->abort();
+    });
     connect(reply, &QNetworkReply::finished, [=]() {
         if (reply->error() == QNetworkReply::NoError) {
             QFile file(filePath);
             if (file.open(QIODevice::WriteOnly)) {
-                file.write(reply->readAll());
+                file.write(reply->readAll (  ));
                 file.close();
-                QMessageBox* msgbox = new QMessageBox();
+                QMessageBox* msgbox = new QMessageBox(QApplication::activeWindow());
                 msgbox->setText("تم تحميل الملف بنجاح !");
                 msgbox->show();
             } else {
-                QMessageBox* msgbox = new QMessageBox();
-                msgbox->setText("فشل فتح الملف ياصاح هناك خطأ ما ._.");
+                QMessageBox* msgbox = new QMessageBox(QApplication::activeWindow());
+                msgbox->setText("فشل فتح الملف هناك خطأ ما");
                 msgbox->show();
             }
         } else {
-            QMessageBox* msgbox = new QMessageBox();
+            QMessageBox* msgbox = new QMessageBox(QApplication::activeWindow());
             msgbox->setText("فشل التحميل");
             msgbox->show();
         }

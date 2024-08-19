@@ -42,7 +42,11 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(u8"متصفح درب");
 
     MainWindow::addNewTab();
-
+    if (QApplication::arguments().length() >= 2){
+        QWidget *currentTab = ui->tabWidget->currentWidget();
+        QWebEngineView *webView = currentTab->findChild<QWebEngineView *>();
+        webView->load(QUrl(QApplication::arguments()[1]));
+    }
 
     QPushButton *addTabButton = new QPushButton("+", this);
     QFont font = addTabButton->font();
@@ -160,7 +164,7 @@ void MainWindow::onSearchButtonClicked(){
     QString search_query = searchInput->text();
     if (!search_query.startsWith("http")){
         search_query.replace(" ","+");
-        search_query = "https://duckduckgo.com/?q=" + search_query;
+        search_query = "https://google.com/search?q=" + search_query;
     }
     webView->load(QUrl(search_query));
 }
@@ -182,7 +186,7 @@ void MainWindow::onRefreshButtonClicked(){
 void MainWindow::onHomeButtonClicked(){
     QWidget *currentTab = ui->tabWidget->currentWidget();
     QWebEngineView *webView = currentTab->findChild<QWebEngineView *>();
-    webView->load(QUrl("https://duckduckgo.com/?q=&t=chromentp"));
+    webView->load(QUrl("https://www.google.com/"));
 }
 
 void MainWindow::onSettingsButtonClicked(){

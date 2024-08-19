@@ -9,13 +9,12 @@
 #include <QWebEngineCookieStore>
 
 WebView::WebView() {
-    //WebProfile* profile = new WebProfile();
     QWebEngineProfile *qprofile = new QWebEngineProfile(QString::fromLatin1("04394584267356253.%1").arg(qWebEngineChromiumVersion()));
     WebProfile *profile = static_cast<WebProfile*>(qprofile);
     profile->load();
     QWebEnginePage *webpage = new QWebEnginePage(profile,this);
     this->setPage(webpage);
-    this->setUrl(QUrl("https://duckduckgo.com/?q=&t=chromentp"));
+    this->setUrl(QUrl("https://google.com"));
     this->reload();
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -28,6 +27,10 @@ WebView::WebView() {
     this->settings()->setAttribute(QWebEngineSettings::WebAttribute::LocalStorageEnabled,true);
     this->settings()->setAttribute(QWebEngineSettings::WebGLEnabled,true);
     this->settings()->setAttribute(QWebEngineSettings::PdfViewerEnabled,true);
+    this->settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled,true);
+    this->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled,true);
+    this->settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard,true);
+    this->settings()->setAttribute(QWebEngineSettings::JavascriptCanPaste,true);
 
     qDebug () << this->page()->profile()->persistentStoragePath();
     this->page()->profile()->cookieStore()->loadAllCookies();
@@ -36,10 +39,10 @@ WebView::WebView() {
 WebView::~WebView(){
 
 }
-// web view slots that in the MainWindow
+
+
 void MainWindow::on_web_full_screen(const QWebEngineFullScreenRequest &request){
     this->SetFullScreen();
-
 }
 void MainWindow::SetFullScreen()
 {
