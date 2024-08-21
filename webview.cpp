@@ -32,6 +32,7 @@ WebView::WebView() {
     this->settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard,true);
     this->settings()->setAttribute(QWebEngineSettings::JavascriptCanPaste,true);
 
+
     qDebug () << this->page()->profile()->persistentStoragePath();
     this->page()->profile()->cookieStore()->loadAllCookies();
 }

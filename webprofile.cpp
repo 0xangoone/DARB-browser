@@ -42,15 +42,12 @@ void WebProfile::load(){
 void WebProfile::on_download(const QWebEngineDownloadRequest *download){
     QString file_name = download->downloadDirectory();
     if( QSysInfo::prettyProductName().startsWith("Windows")){
-        // dos file System
         file_name += "\\";
     }else{
-        // unix file system
         file_name += "/";
     }
     file_name += download->downloadFileName();
     qDebug() << download->url() << "\n";
-    // download the file
     this->downloadFile(download->url(),file_name);
 }
 void WebProfile::downloadFile(const QUrl &url, const QString &filePath)
@@ -74,6 +71,10 @@ void WebProfile::downloadFile(const QUrl &url, const QString &filePath)
         reply->abort();
     });
     connect(reply, &QNetworkReply::finished, [=]() {
+        if (pd != nullptr){
+            pd->hide();
+            delete this->pd;
+        }
         if (reply->error() == QNetworkReply::NoError) {
             QFile file(filePath);
             if (file.open(QIODevice::WriteOnly)) {
