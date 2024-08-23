@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>972</width>
-    <height>661</height>
+    <width>1161</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -46,15 +46,21 @@ QPushButton{
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <property name="spacing">
      <number>0</number>
     </property>
     <property name="sizeConstraint">
-     <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+     <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
     </property>
     <property name="leftMargin">
      <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
     </property>
     <property name="rightMargin">
      <number>0</number>
@@ -66,6 +72,9 @@ QPushButton{
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="sizeConstraint">
        <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
       </property>
       <item>
        <widget class="QTabWidget" name="tabWidget">
@@ -140,12 +149,11 @@ QTabBar::close-button {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>972</width>
-     <height>21</height>
+     <width>1161</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

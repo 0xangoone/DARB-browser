@@ -7,6 +7,29 @@
 #include <QWebEngineFullScreenRequest>
 #include <QWebEngineProfile>
 #include <QWebEngineDownloadRequest>
+#include <QTabWidget>
+#include <QWebEngineFullScreenRequest>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QIcon>
+#include <QWebEngineView>
+#include <QScrollBar>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include<QApplication>
+#include <QMessageBox>
+#include <QWebEnginePage>
+#include <QUrl>
+#include <QSysInfo>
+#include <QWebEngineCookieStore>
+#include <QNetworkCookie>
+#include <QDir>
+#include <QStandardPaths>
+#include <QKeyEvent>
+#include <QToolButton>
+#include <QTabBar>
+#include <QLabel>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -31,10 +54,10 @@ private slots:
     void onTitleChanged(const QString &title);
     void onUrlChanged(const QUrl &url);
     void onIconChanged(const QIcon &icon);
-    void on_web_full_screen(const QWebEngineFullScreenRequest &request);
+    void on_web_full_screen(QWebEngineFullScreenRequest request);
     void SetFullScreen();
     void on_newWindow(const QWebEngineNewWindowRequest &request);
-    void enableFullScreen();
+    void disableFullScreen();
     void onBack();
     void onForward();
 protected:

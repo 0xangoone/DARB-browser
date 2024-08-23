@@ -1,28 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include<QTabWidget>
-#include <QWebEngineFullScreenRequest>
-#include <QPushButton>
-#include <QLineEdit>
-#include <QIcon>
-#include <QWebEngineView>
-#include <QScrollBar>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include<QApplication>
-#include <QMessageBox>
-#include <QWebEnginePage>
-#include <QUrl>
-#include <QSysInfo>
-#include <QWebEngineCookieStore>
-#include <QNetworkCookie>
-#include <QDir>
-#include <QStandardPaths>
-#include <QKeyEvent>
-#include <QToolButton>
 #include "webview.h"
-#include <QTabBar>
-#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -218,7 +196,7 @@ void MainWindow::handleKeyPress(int key) {
             if (this->isFullScreen() == false){
                 this->SetFullScreen();
             }else{
-                this->enableFullScreen();
+                this->disableFullScreen();
             }
             break;
         default:

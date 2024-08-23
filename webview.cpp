@@ -42,15 +42,23 @@ WebView::~WebView(){
 }
 
 
-void MainWindow::on_web_full_screen(const QWebEngineFullScreenRequest &request){
-    this->SetFullScreen();
+void MainWindow::on_web_full_screen(QWebEngineFullScreenRequest request){
+    if (request.toggleOn()){
+        request.accept();
+        this->SetFullScreen();
+    }
+    else {
+        request.accept();
+        this->disableFullScreen();
+    }
+    //this->SetFullScreen();
 }
 void MainWindow::SetFullScreen()
 {
     ui->tabWidget->setTabBarAutoHide(true);
     this->showFullScreen();
 }
-void MainWindow::enableFullScreen(){
+void MainWindow::disableFullScreen(){
     ui->tabWidget->setTabBarAutoHide(false);
     this->showNormal();
 }
