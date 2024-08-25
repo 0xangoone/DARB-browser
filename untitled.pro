@@ -1,6 +1,6 @@
 QT       += core gui webenginewidgets
 TARGET = DARBbrowser
-
+WEBENGINE_CONFIG+=use_proprietary_codecs
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webenginewidgets
 
@@ -13,13 +13,17 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    webpage.cpp \
     webprofile.cpp \
-    webview.cpp
+    webview.cpp \
+    wuri.cpp
 
 HEADERS += \
     mainwindow.h \
+    webpage.h \
     webprofile.h \
-    webview.h
+    webview.h \
+    wuri.h
 
 FORMS += \
     mainwindow.ui

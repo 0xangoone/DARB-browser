@@ -86,21 +86,26 @@ QPushButton{
         </property>
         <property name="styleSheet">
          <string notr="true">QTabBar::tab:selected{
-	background:rgb(25,25,25);
-	
+	background:rgb(25,25,25);	
+    border-top: 3px solid rgb(255,255,255); 
 }
 QTabBar::tab {
 	color:white;
 	width:250px;
 	height:35px;
 	background:rgb(17,17,17);
+	maragin:0px;
+	border-top: 3px solid rgb(17,17,17); 
+
+	padding:0;
 }
 QWidget{
+	padding-top:0px;
 	background:rgb(25,25,25);
 }
 QTabWidget::pane {
         border: 0px;
-        margin: 0px;
+        margin: 5px;
         padding: 0px;
 }
 QTabBar::close-button {
@@ -114,7 +119,7 @@ QTabBar::close-button {
          <enum>QTabWidget::TabShape::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="tabsClosable">
          <bool>true</bool>

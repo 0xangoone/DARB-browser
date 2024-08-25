@@ -12,6 +12,8 @@
 #include <QFile>
 #include <QTimer>
 #include <QProgressDialog>
+#include "wuri.h"
+#include <QWebEngineSettings>
 WebProfile::WebProfile() {
     this->load();
 }
@@ -21,6 +23,9 @@ WebProfile::~WebProfile(){
     }
 }
 void WebProfile::load(){
+    WUri *wuri = new WUri();
+    this->setUrlRequestInterceptor(wuri);
+
     this->setCachePath(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
     qDebug () << QStandardPaths::CacheLocation;
     this->setPersistentCookiesPolicy(QWebEngineProfile::PersistentCookiesPolicy::AllowPersistentCookies);

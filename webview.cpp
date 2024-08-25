@@ -7,30 +7,19 @@
 #include <QWebEngineProfile>
 #include "webprofile.h"
 #include <QWebEngineCookieStore>
+#include "webpage.h"
 
 WebView::WebView() {
     QWebEngineProfile *qprofile = new QWebEngineProfile(QString::fromLatin1("04394584267356253.%1").arg(qWebEngineChromiumVersion()));
     WebProfile *profile = static_cast<WebProfile*>(qprofile);
     profile->load();
-    QWebEnginePage *webpage = new QWebEnginePage(profile,this);
+    QWebEnginePage *_webpage = new QWebEnginePage(profile,this);
+    WebPage *webpage = static_cast<WebPage*>(_webpage);
+    webpage->load();
     this->setPage(webpage);
     this->setUrl(QUrl("https://google.com"));
     this->reload();
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
-    this->settings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::NavigateOnDropEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::PluginsEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows,true);
-    this->settings()->setAttribute(QWebEngineSettings::WebAttribute::LocalStorageEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::WebGLEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::PdfViewerEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled,true);
-    this->settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard,true);
-    this->settings()->setAttribute(QWebEngineSettings::JavascriptCanPaste,true);
 
 
     qDebug () << this->page()->profile()->persistentStoragePath();

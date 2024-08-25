@@ -52,41 +52,43 @@ void MainWindow::addNewTab() {
     QWidget *newTab = new QWidget();
 
     QVBoxLayout *layout = new QVBoxLayout(newTab);
+    layout->setContentsMargins(0,0,0,0);
+    layout->setSpacing(0);
     layout->setAlignment(Qt::AlignTop);
 
 
     QLineEdit *search_input = new QLineEdit();
     search_input->setStyleSheet("border-radius:10px;"
                          "background:#303030;"
-                         "font-size:18px;"
+                         "font-size:15px;"
                          "padding:5px;"
                          "color:white;");
 
-    const QIcon* search_icon   = new QIcon(":/img/img/search.png" );
-    const QIcon* refresh_icon  = new QIcon(":/img/img/refresh.png");
-    const QIcon* settings_icon = new QIcon(":img/img/setting.png" );
-    const QIcon* home_icon     = new QIcon(":img/img/home.png"    );
-    const QIcon* left_icon     = new QIcon(":img/img/left.png"    );
-    const QIcon* right_icon    = new QIcon(":img/img/right.png"   );
+    QIcon search_icon(":/img/img/search.png");
+    QIcon refresh_icon(":/img/img/refresh.png");
+    QIcon settings_icon(":img/img/setting.png");
+    QIcon home_icon(":img/img/home.png");
+    QIcon left_icon(":img/img/left.png");
+    QIcon right_icon(":img/img/right.png");
 
     QPushButton* search_btn    = new QPushButton();
-    search_btn->setIcon(*search_icon);
+    search_btn->setIcon(search_icon);
 
     QPushButton* refresh_btn = new QPushButton();
-    refresh_btn->setIcon(*refresh_icon);
+    refresh_btn->setIcon(refresh_icon);
 
     QPushButton* settings_btn = new QPushButton();
-    settings_btn->setIcon(*settings_icon);
+    settings_btn->setIcon(settings_icon);
 
     QPushButton* home_btn = new QPushButton();
-    home_btn->setIcon(*home_icon);
+    home_btn->setIcon(home_icon);
 
     QPushButton* back_btn = new QPushButton();
-    back_btn->setIcon(*left_icon);
+    back_btn->setIcon(left_icon);
     back_btn->setIconSize(QSize(20,40));
 
     QPushButton* forward_btn = new QPushButton();
-    forward_btn->setIcon(*right_icon);
+    forward_btn->setIcon(right_icon);
     forward_btn->setIconSize(QSize(20,40));
 
 
